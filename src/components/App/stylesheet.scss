@@ -10,7 +10,7 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  transition: color .2s, background-color .2s;
+  transition: color 0.2s, background-color 0.2s;
 
   .main {
     overflow: hidden;
@@ -95,10 +95,23 @@
   border-radius: 10px;
   padding: 25px 10px;
 
-  h1 { color: #444444; font-weight: 800; }
-  p  { color: #555555; text-align: left; }
+  h2,
+  h3 {
+    color: #444444;
+    font-weight: 800;
+  }
+  h2 {
+    margin-top: 0;
+  }
+  p {
+    color: #555555;
+    text-align: left;
+    line-height: 1.25;
+  }
   a {
-    &:hover { color: #ffaa5a; }
+    &:hover {
+      color: #ffaa5a;
+    }
     transition: all 0.33s ease;
     color: #f37f6a;
     font-weight: 700;
@@ -106,7 +119,9 @@
 }
 
 .swal-button {
-  &:hover { background-color: #ffaa5a !important; }
+  &:hover {
+    background-color: #ffaa5a !important;
+  }
   box-shadow: 0px 0px 20px #00000033;
   transition: all 0.33s ease;
   background-color: #f37f6a;
