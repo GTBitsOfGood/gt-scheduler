@@ -35,6 +35,13 @@ const App = () => {
 
   // display popup when first visiting the site
   useEffect(() => {
+    // From https://stackoverflow.com/a/22859920/13192375
+    const weeksBetween = (d1, d2) =>
+      Math.round((d2 - d1) / (7 * 24 * 60 * 60 * 1000));
+    const migrationDate = new Date(2021, 2, 17); // 03-17-2021
+    const now = new Date();
+    const weeksUntil = weeksBetween(now, migrationDate);
+    const weeksUntilStr = weeksUntil < 1 ? '<1' : String(weeksUntil);
     swal({
       button: 'Got It!',
       content: (
@@ -66,7 +73,8 @@ const App = () => {
             </a>
             , on{' '}
             <strong>
-              Wednesday, March 17th, 2021 or five weeks out from today!
+              Wednesday, March 17th, 2021 or {weeksUntilStr} weeks out from
+              today!
             </strong>
           </p>
           <h3>What does this mean for you?</h3>
