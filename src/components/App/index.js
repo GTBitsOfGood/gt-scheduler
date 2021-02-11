@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import swal from '@sweetalert/with-react';
-import Cookies from 'js-cookie';
 import { classes } from '../../utils';
 import { Header, Scheduler, Map, NavDrawer, NavMenu, Attribution } from '..';
 import { Oscar } from '../../beans';
@@ -36,83 +35,79 @@ const App = () => {
 
   // display popup when first visiting the site
   useEffect(() => {
-    if (!Cookies.get('migration_flag')) {
-      swal({
-        button: 'Got It!',
-        content: (
-          <div>
-            <h2>Attention all GT Scheduler Users</h2>
-            <p>
-              The Bits of Good GT Scheduler team is excited to announce that we
-              will be merging our changes with the original upstream and
-              spectacular GT Scheduler project created by{' '}
-              <strong>Jinseo (Jason) Park</strong>. We will be working together
-              under a new{' '}
-              <a
-                target="_blank"
-                rel="noreferrer noopener"
-                href="https://github.com/gt-scheduler"
-              >
-                GT Scheduler organization
-              </a>{' '}
-              to make class registration easier for everybody!
-            </p>
-            <p>
-              We will be officially migrating to our new internet home,{' '}
-              <a
-                target="_blank"
-                rel="noreferrer noopener"
-                href="https://gt-scheduler.org"
-              >
-                gt-scheduler.org
-              </a>
-              , on{' '}
-              <strong>
-                Wednesday, March 17th, 2021 or five weeks out from today!
-              </strong>
-            </p>
-            <h3>What does this mean for you?</h3>
-            <p>
-              It means all your favorite GT Scheduler features will be
-              consolidated on{' '}
-              <a
-                target="_blank"
-                rel="noreferrer noopener"
-                href="https://gt-scheduler.org"
-              >
-                gt-scheduler.org
-              </a>
-              , but{' '}
-              <strong>no personal data will be migrated over or saved</strong>.
-              You can save your existing data by downloading your classes as a
-              png, exporting the classes to your calendar, or copying the CRNs.
-            </p>
-            <h3>Can I still use the old websites?</h3>
-            <p>
-              The current GT Scheduler projects (
-              <a
-                target="_blank"
-                rel="noreferrer noopener"
-                href="https://gtbitsofgood.github.io/gt-scheduler"
-              >
-                Bits of Good&apos;s fork
-              </a>{' '}
-              and{' '}
-              <a
-                target="_blank"
-                rel="noreferrer noopener"
-                href="https://jasonpark.me/gt-scheduler/"
-              >
-                Jason Park&apos;s original
-              </a>
-              ) will no longer be active or available after March 17th.
-            </p>
-          </div>
-        )
-      });
-
-      Cookies.set('migration_flag', true, { expires: 365 });
-    }
+    swal({
+      button: 'Got It!',
+      content: (
+        <div>
+          <h2>Attention all GT Scheduler Users</h2>
+          <p>
+            The Bits of Good GT Scheduler team is excited to announce that we
+            will be merging our changes with the original upstream and
+            spectacular GT Scheduler project created by{' '}
+            <strong>Jinseo (Jason) Park</strong>. We will be working together
+            under a new{' '}
+            <a
+              target="_blank"
+              rel="noreferrer noopener"
+              href="https://github.com/gt-scheduler"
+            >
+              GT Scheduler organization
+            </a>{' '}
+            to make class registration easier for everybody!
+          </p>
+          <p>
+            We will be officially migrating to our new internet home,{' '}
+            <a
+              target="_blank"
+              rel="noreferrer noopener"
+              href="https://gt-scheduler.org"
+            >
+              gt-scheduler.org
+            </a>
+            , on{' '}
+            <strong>
+              Wednesday, March 17th, 2021 or five weeks out from today!
+            </strong>
+          </p>
+          <h3>What does this mean for you?</h3>
+          <p>
+            It means all your favorite GT Scheduler features will be
+            consolidated on{' '}
+            <a
+              target="_blank"
+              rel="noreferrer noopener"
+              href="https://gt-scheduler.org"
+            >
+              gt-scheduler.org
+            </a>
+            , but{' '}
+            <strong>no personal data will be migrated over or saved</strong>.
+            You can save your existing data by downloading your classes as a
+            png, exporting the classes to your calendar, or copying the CRNs.
+          </p>
+          <h3>Can I still use the old websites?</h3>
+          <p>
+            The current GT Scheduler projects (
+            <a
+              target="_blank"
+              rel="noreferrer noopener"
+              href="https://gtbitsofgood.github.io/gt-scheduler"
+            >
+              Bits of Good&apos;s fork
+            </a>{' '}
+            and{' '}
+            <a
+              target="_blank"
+              rel="noreferrer noopener"
+              href="https://jasonpark.me/gt-scheduler/"
+            >
+              Jason Park&apos;s original
+            </a>
+            ) will no longer be active or available after March 17th.
+          </p>
+        </div>
+      )
+    });
   }, []);
 
   // Fetch the current term's scraper information
