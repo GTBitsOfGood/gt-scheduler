@@ -1,10 +1,21 @@
 import React from 'react';
-import { ActionRow } from '..';
 import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
+import { ActionRow } from '..';
 import { classes, getContentClassName } from '../../utils';
 import './stylesheet.scss';
 
-export function DaySelection({ courseDateMap, activeDay, setActiveDay }) {
+type Day = 'M' | 'T' | 'W' | 'R' | 'F';
+export type DaySelectionProps = {
+  courseDateMap: Record<Day, object[]>;
+  activeDay: Day | '';
+  setActiveDay: (next: Day | '') => void;
+};
+
+export default function DaySelection({
+  courseDateMap,
+  activeDay,
+  setActiveDay
+}: DaySelectionProps) {
   const colorPalette = ['#FCB9AA', '#FFDBCC', '#ECEAE4', '#A2E1DB', '#55CBCD'];
   const daysOfTheWeek = [
     'Monday',
@@ -14,24 +25,20 @@ export function DaySelection({ courseDateMap, activeDay, setActiveDay }) {
     'Friday'
   ];
 
-  const formatTime = (time) => {
+  const formatTime = (time: number): string => {
     if (Math.floor(time / 60) > 12) {
-      return (
-        (Math.floor(time / 60) % 12) +
-        ':' +
-        (time % 60 == 0 ? '00' : time % 60) +
-        'pm'
-      );
+      return `${Math.floor(time / 60) % 12}:${
+        time % 60 === 0 ? '00' : time % 60
+      }pm`;
     }
-    return (
-      Math.floor(time / 60) + ':' + (time % 60 == 0 ? '00' : time % 60) + 'am'
-    );
+    return `${Math.floor(time / 60)}:${time % 60 === 0 ? '00' : time % 60}am`;
   };
 
   return (
     <div className="date-container">
       {Object.keys(courseDateMap).map((date, i) => (
         <div
+          key={date}
           className={classes(
             'date',
             getContentClassName(colorPalette[i]),
@@ -46,16 +53,18 @@ export function DaySelection({ courseDateMap, activeDay, setActiveDay }) {
               {
                 icon: date === activeDay ? faAngleUp : faAngleDown,
                 onClick: () =>
-                  date !== activeDay ? setActiveDay(date) : setActiveDay('')
+                  date !== activeDay
+                    ? setActiveDay(date as Day)
+                    : setActiveDay('')
               }
             ]}
           />
           {activeDay === date && (
             <div className="dropdown-content">
-              {courseDateMap[date].length === 0 ? (
+              {courseDateMap[date as Day].length === 0 ? (
                 <div className="course-content">No classes this day!</div>
               ) : (
-                courseDateMap[date].map((course) => (
+                courseDateMap[date as Day].map((course: any) => (
                   <div className="course-content">
                     <div className="course-id">{course.id}</div>
                     <span className="course-row">{course.title}</span>

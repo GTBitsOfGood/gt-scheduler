@@ -151,7 +151,7 @@ const Header = ({
         <div className="tabs">
           {tabs.map((tabLabel, tabIdx) => (
             <Tab
-              key={tabIdx}
+              key={tabLabel}
               active={tabIdx === currentTab}
               onClick={() => onChangeTab(tabIdx)}
               label={tabLabel}

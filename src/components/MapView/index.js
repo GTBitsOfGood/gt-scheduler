@@ -16,7 +16,6 @@ const MapView = ({ locations }) => {
 
   return (
     <div className="mapbox">
-      {console.log(process.env)}
       <ReactMapGL
         {...viewport}
         showZoom
