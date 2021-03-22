@@ -1,3 +1,5 @@
+# GT Scheduler is now maintained by [gt-scheduler](https://github.com/gt-scheduler).
+
 # GT Scheduler
 > Georgia Tech Scheduler lets you find the schedule that fits you best among all the possible combinations of courses.
 
